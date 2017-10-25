@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utility.Animation.Render;
 
 namespace Utility.Animation
 {
@@ -14,47 +11,22 @@ namespace Utility.Animation
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public Timeline Timeline { get; set; }
+        private readonly Timeline _timeline;
 
         public Video(Timeline timeline)
         {
-            Timeline = timeline;
+            _timeline = timeline;
             Width = 800;
             Height = 600;
         }
 
-        private List<Bitmap> RenderedFrames
+        public List<Bitmap> RenderedFrames
         {
             get
             {
-                return Timeline.Tweens.SelectMany(tween => tween.Run().Select(RenderFrame)).ToList();
+                return _timeline.Tweens.SelectMany(tween => tween.Results.Select(f => f.Render(Width, Height))).ToList();
             }
         }
-
-        private Bitmap RenderFrame(Frame frame)
-        {
-            var result = new Bitmap(Width, Height);
-            using (var graphics = Graphics.FromImage(result))
-            {
-                frame.Graphics.ForEach(graphics.DrawGraphicFrame);
-            }
-            return result;
-        }
-
-        private void SaveFile(Bitmap file)
-        {
-            file.Save(string.Format("{0}.jpg", Guid.NewGuid()));
-        }
-
-        public void Save(string filename)
-        {
-            VideoFileWriter writer = new VideoFileWriter();
-            writer.Open(filename, Width, Height, 30, VideoCodec.H263P, 4000000);
-
-            var x = RenderedFrames;
-            x.ForEach(writer.WriteVideoFrame);
-
-            writer.Close();
-        }
+        
     }
 }

@@ -12,5 +12,22 @@ namespace Utility.Animation
         public float Alpha { get; set; }
         public Position Position { get; set; }
         public Position Offset { get; set; }
+
+        public static Graphic FromImage(Image image, int layer = 0, float alpha = 1f)
+        {
+            var width = image.Width;
+            var height = image.Height;
+
+            var result = new Graphic
+            {
+                Layer = layer,
+                Image = image,
+                Alpha = alpha,
+                Position = new Position(0, 0, width, height),
+                Offset = new Position(0, 0, width, height)
+            };
+
+            return result;
+        }
     }
 }
