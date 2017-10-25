@@ -23,6 +23,14 @@ namespace Utility.Animation
             Height = 600;
         }
 
+        private List<Bitmap> RenderedFrames
+        {
+            get
+            {
+                return Timeline.Tweens.SelectMany(tween => tween.Run().Select(RenderFrame)).ToList();
+            }
+        }
+
         private Bitmap RenderFrame(Frame frame)
         {
             var result = new Bitmap(Width, Height);
@@ -43,9 +51,8 @@ namespace Utility.Animation
             VideoFileWriter writer = new VideoFileWriter();
             writer.Open(filename, Width, Height, 30, VideoCodec.H263P, 4000000);
 
-            Timeline.Frames
-                .Select(RenderFrame).ToList()
-                .ForEach(writer.WriteVideoFrame);
+            var x = RenderedFrames;
+            x.ForEach(writer.WriteVideoFrame);
 
             writer.Close();
         }

@@ -1,40 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utility.Animation.Factory;
+using Utility.Animation.Tweens;
 
 namespace Utility.Animation
 {
     public class Timeline
     {
-        private SortedList<int, Frame> frames { get; set; }
-        public int Layer { get; set; }
+        private SortedList<int, ITween> _tweens;
 
-        public Timeline()
-        {
-            frames = new SortedList<int,Frame>();
-            Layer = 0;
-        }
-
-        public List<Frame> Frames
+        public List<ITween> Tweens
         {
             get
             {
-                return frames.OrderBy(k => k.Key).Select(v => v.Value).ToList();
+                return _tweens.OrderBy(k => k.Key).Select(v => v.Value).ToList();
             }
         }
+        public int Layer { get; set; }
 
-        public Frame GetFrame(int index) 
+        private int Index = 0;
+
+        public Timeline()
         {
-            frames.TryGetValue(index, out Frame result);
-            return result;
+            _tweens = new SortedList<int, ITween>();
+            Layer = 0;
         }
 
-        public void Add(Graphic graphic, int index)
+        public void Add(ITween tween)
         {
-            frames.Add(index, new Frame(graphic));
+            _tweens.Add(Index, tween);
+            Index++;
         }
     }
 }

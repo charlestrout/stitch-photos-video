@@ -57,6 +57,7 @@
     <Compile Include="Animation\Factory\GraphicFactory.cs" />
     <Compile Include="Animation\Render\GraphicRenderer.cs" />
     <Compile Include="Animation\Timeline.cs" />
+    <Compile Include="Animation\Tweens\Tweens.cs" />
     <Compile Include="Filters\StainedGlass.cs" />
     <Compile Include="Animation\Frame.cs" />
     <Compile Include="Program.cs" />

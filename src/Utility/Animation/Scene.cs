@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Utility.Animation;
 using Utility.Animation.Factory;
 using Utility.Animation.Render;
+using Utility.Animation.Tweens;
 
 namespace Utility
 {
@@ -17,8 +18,7 @@ namespace Utility
             var image1 = Image.FromFile("orig-1.jpg");
 
             var tl = new Timeline();
-            for(var i = 0; i <= 60; i++)
-                tl.Add(GraphicFactory.Create(image1), i);
+            tl.Add(new StaticTween(GraphicFactory.Create(image1), 10));
 
             var video = new Video(tl);
             video.Save("test1.avi");
