@@ -8,7 +8,7 @@ namespace Utility.Animation
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public double Alpha { get; set; }
+        public float Alpha { get; set; }
 
         public Rectangle AsRectangle => new Rectangle(X, Y, Width, Height);
 
@@ -17,13 +17,37 @@ namespace Utility.Animation
             return new GraphicStyle { X = 0, Y = 0, Alpha = 1, Height = height, Width = width };
         }
 
-        public void Scale(float value)
+        public GraphicStyle AlphaTo(float value)
+        {
+            this.Alpha = value;
+            return this;
+        }
+
+        public GraphicStyle Scale(float value)
         {
             Width = (int)(Width * value);
             Height = (int)(Height * value);
+            return this;
         }
 
-        public GraphicStyle Clone()
+        public GraphicStyle MoveTo(int? x = null, int? y = null)
+        {
+            if (x.HasValue) this.X = x.Value;
+            if (y.HasValue) this.Y = y.Value;
+            return this;
+        }
+
+        public static GraphicStyle Copy(Graphic graphic)
+        {
+            return graphic.Style.Clone();
+        }
+
+        public static GraphicStyle Copy(GraphicStyle style)
+        {
+            return style.Clone();
+        }
+
+        private GraphicStyle Clone()
         {
             return (GraphicStyle)this.MemberwiseClone();
         }

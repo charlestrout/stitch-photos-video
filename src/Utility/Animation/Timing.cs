@@ -1,52 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utility.Animation
 {
-    public static class AggregateExtension
-    {
-        public static double[] Cumulate(this IEnumerable<double> query, double seed)
-        {
-            var list = query.ToList();
-            var count = list.Count;
-            var result = new double[count];
-            var value = seed;
-
-            for (var i = 0; i < count; i++)
-            {
-                result[i] = value + list[i];
-            }
-
-            return result;
-        }
-    }
-
     public static class Timing
     {
         public static int FPS = 30;
-
-        public static IEnumerable<T> Generate<T>(Func<T> func, int count)
-        {
-            var index = 0;
-            while (index < count)
-            {
-                yield return func();
-                index++;
-            }
-        }
-
-        public static int FrameCount(int duration) {
-            return duration * FPS;
-        }
-
-        public static void Animate(double min, double max, int duration)
-        {
-            var frameCount = (max - min) / FrameCount(duration);
-
-        }
 
         public static float Linear(float value)
         {
@@ -61,7 +21,7 @@ namespace Utility.Animation
             for (float i = 0; i <= max; i++) yield return func(i / max);
         }
 
-        public static IEnumerable<double> Tween(double min, double max, int duration, Func<float,float> ease)
+        public static IEnumerable<float> Tween(float min, float max, int duration, Func<float,float> ease)
         {
             //calculate the amount we are changing
             var delta = max - min;

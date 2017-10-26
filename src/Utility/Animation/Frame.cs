@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utility.Animation;
+﻿using System.Collections.Generic;
 
 namespace Utility.Animation
 {

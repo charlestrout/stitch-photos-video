@@ -15,14 +15,12 @@ namespace Utility.Animation
                 return _tweens.OrderBy(k => k.Key).Select(v => v.Value).ToList();
             }
         }
-        public int Layer { get; set; }
 
         private int Index = 0;
 
         public Timeline()
         {
             _tweens = new SortedList<int, ITween>();
-            Layer = 0;
         }
 
         public void Add(ITween tween)

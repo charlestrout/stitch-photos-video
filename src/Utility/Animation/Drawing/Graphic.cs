@@ -11,6 +11,7 @@ namespace Utility.Animation
         public Image Image { get; set; }
         public GraphicStyle Style { get; set; }
 
+
         public static Graphic FromImage(Image image, GraphicStyle style)
         {
             return new Graphic { Image = image, Style = style };

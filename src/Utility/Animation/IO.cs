@@ -1,9 +1,4 @@
 ﻿using AForge.Video.FFMPEG;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utility.Animation
 {
@@ -12,7 +7,7 @@ namespace Utility.Animation
         public static void SaveVideo(this Video video, string filename)
         {
             VideoFileWriter writer = new VideoFileWriter();
-            writer.Open(filename, video.Width, video.Height, 30, VideoCodec.H263P);
+            writer.Open(filename, video.Width, video.Height, 30, VideoCodec.H263P, 1280000);
             video.Render().ForEach(writer.WriteVideoFrame);
             writer.Close();
         }

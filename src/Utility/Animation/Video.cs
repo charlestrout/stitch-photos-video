@@ -1,10 +1,4 @@
-﻿using AForge.Video.FFMPEG;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-
-namespace Utility.Animation
+﻿namespace Utility.Animation
 {
     public class Video
     {
