@@ -53,13 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation\Drawing\Graphic.cs" />
-    <Compile Include="Animation\Drawing\Position.cs" />
+    <Compile Include="Animation\Drawing\GraphicStyle.cs" />
     <Compile Include="Animation\IO.cs" />
     <Compile Include="Animation\Renderers.cs" />
     <Compile Include="Animation\Timeline.cs" />
     <Compile Include="Animation\Timing.cs" />
-    <Compile Include="Animation\Tweens\AlphaTween.cs" />
-    <Compile Include="Animation\Tweens\MoveTween.cs" />
     <Compile Include="Animation\Tweens\StaticTween.cs" />
     <Compile Include="Filters\StainedGlass.cs" />
     <Compile Include="Animation\Frame.cs" />

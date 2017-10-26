@@ -20,7 +20,7 @@ namespace Utility.Animation.Tweens
         public List<Frame> Results => _deltas.Select( (d,i) =>
         {
             var g = Graphic.Clone();
-            g.Alpha = d;
+            //g.Alpha = d;
 
             return new Frame(g);
         }).ToList();

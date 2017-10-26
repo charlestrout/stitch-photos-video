@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Utility.Animation
 {
-    public class Video : IDimension
+    public class Video
     {
         public int Width { get; set; }
         public int Height { get; set; }
@@ -24,22 +24,22 @@ namespace Utility.Animation
         {
             get
             {
-                var pos = new Dictionary<int, Position>();
+                var pos = new Dictionary<int, GraphicStyle>();
 
 
                 var x = _timeline.Tweens.SelectMany(tween =>
                 {
-                    var hash = tween.Graphic.GetHashCode();
+                    var hash = tween.graphic.GetHashCode();
 
                     if (pos.ContainsKey(hash))
                     {
-                        var p = pos[tween.Graphic.GetHashCode()];
+                        var p = pos[tween.graphic.GetHashCode()];
 
-                        tween.Graphic.Position = p;
+                        tween.graphic.Style = p;
                     }
 
                     var tweenResults = tween.Results;
-                    pos[hash] = tweenResults.LastOrDefault().Graphics.FirstOrDefault().Position;
+                    pos[hash] = tweenResults.LastOrDefault().Graphics.FirstOrDefault().Style;
 
                     return tweenResults.Select(f => f.Render(Width, Height)).ToList();
 

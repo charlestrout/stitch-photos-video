@@ -2,6 +2,7 @@
 
 namespace Utility.Animation
 {
+
     /// <summary>
     /// A graphic element to be drawn onto a frame
     /// </summary>
@@ -9,31 +10,22 @@ namespace Utility.Animation
     {
         public int Layer { get; set; }
         public Image Image { get; set; }
-        public double Alpha { get; set; }
-        public Position Position { get; set; }
-        public Position Offset { get; set; }
+        public GraphicStyle Style { get; set; }
 
-        public static Graphic FromImage(Image image, int layer = 0, float alpha = 1f)
+        public static Graphic FromImage(Image image, int layer = 0)
         {
-            var width = image.Width;
-            var height = image.Height;
-
-            var result = new Graphic
+            return new Graphic
             {
                 Layer = layer,
                 Image = image,
-                Alpha = alpha,
-                Position = new Position(0, 0, (int)(width * 1.2), (int)(height * 1.2)),
-                Offset = new Position(0, 0, width, height)
+                Style = GraphicStyle.Default(image.Width, image.Height)
             };
-
-            return result;
         }
 
         public Graphic Clone()
         {
             var result = FromImage(Image);
-            result.Position = new Position(this.Position.X, this.Position.Y, this.Position.Width, this.Position.Height);
+            result.Style = result.Style.Clone();
             return result;
         }
     }

@@ -14,15 +14,15 @@ namespace Utility.Animation
         {
             var attr = new ImageAttributes();
             attr.SetColorMatrix(
-                new ColorMatrix { Matrix33 = (float)graphic.Alpha },
+                new ColorMatrix { Matrix33 = (float)graphic.Style.Alpha },
                 ColorMatrixFlag.Default,
                 ColorAdjustType.Bitmap);
 
-            result.FillRectangle(Brushes.Black, new Rectangle(0, 0, graphic.Position.Width, graphic.Position.Height));
+            result.FillRectangle(Brushes.Black, new Rectangle(0, 0, graphic.Style.Width, graphic.Style.Height));
 
             result.DrawImage(graphic.Image,
-                graphic.Position.AsRectangle,
-                graphic.Offset.X, graphic.Offset.Y, graphic.Offset.Width, graphic.Offset.Height,
+                graphic.Style.AsRectangle,
+                0,0,graphic.Image.Width, graphic.Image.Height, //draw entire image
                 GraphicsUnit.Pixel, attr);
         }
 
