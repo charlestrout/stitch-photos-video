@@ -13,7 +13,12 @@ namespace Utility.Animation
         public static void Render(this Graphics result, Graphic graphic)
         {
             var attr = new ImageAttributes();
-            attr.SetColorMatrix(new ColorMatrix { Matrix33 = graphic.Alpha });
+            attr.SetColorMatrix(
+                new ColorMatrix { Matrix33 = (float)graphic.Alpha },
+                ColorMatrixFlag.Default,
+                ColorAdjustType.Bitmap);
+
+            result.FillRectangle(Brushes.Black, new Rectangle(0, 0, graphic.Position.Width, graphic.Position.Height));
 
             result.DrawImage(graphic.Image,
                 graphic.Position.AsRectangle,

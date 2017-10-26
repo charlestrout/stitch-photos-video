@@ -10,27 +10,27 @@ namespace Utility.Animation
     {
         public static int FPS = 30;
 
-        public static int FrameCount(decimal duration)
+        public static int FrameCount(int duration)
         {
-            return (int)(duration * FPS);
+            return duration * FPS;
         }
 
-        public static int[] EaseLinear(int min, int max, decimal duration)
+        public static double[] EaseLinear(double min, double max, int duration)
         {
             var count = FrameCount(duration);
             var delta = (max - min) / count;
 
             var results = new Aggregator();
-            Enumerable.Range(0, count).Select(_ => delta).Aggregate(min, results.Capture);
+            Enumerable.Range(0, count + 1).Select(_ => delta).Aggregate(min, results.Capture);
 
-            return results.Results.ToArray();
+            return results.Results.Skip(1).ToArray();
         }
     }
 
     public class Aggregator
     {
-        public List<int> Results = new List<int>();
-        public int Capture(int a, int b)
+        public List<double> Results = new List<double>();
+        public double Capture(double a, double b)
         {
             Results.Add(a);
             return a + b;

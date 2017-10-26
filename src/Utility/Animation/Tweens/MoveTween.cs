@@ -15,24 +15,27 @@ namespace Utility.Animation.Tweens
     public class MoveTween : ITween
     {
         private List<Delta> Deltas = new List<Delta>();
+        public Graphic Graphic { get; set; }
 
-        private Graphic _graphic;
-
-        public MoveTween(Graphic graphic, decimal duration, int x1, int y1, int x2, int y2)
+        public MoveTween(Graphic graphic, int duration, int x1, int y1, int x2, int y2)
         {
-            _graphic = graphic;
+            Graphic = graphic;
 
             var dx = Timing.EaseLinear(x1, x2, duration);
             var dy = Timing.EaseLinear(y1, y2, duration);
-            Deltas = dx.Select((v, i) => new Delta { X = v, Y = dy[i] }).ToList();
+            Deltas = dx.Select( (v, i) => new Delta {
+                X = (int)v,
+                Y = (int)dy[i]
+            }).ToList();
         }
 
         public List<Frame> Results => Deltas.Select(d =>
         {
-            var graphic = Graphic.FromImage(_graphic.Image);
-            graphic.Position = new Position(d.X, d.Y, _graphic.Image.Width, _graphic.Image.Height);
-            return new Frame(graphic);
+            var graphic = Graphic.Clone();
+            graphic.Position.X = d.X;
+            graphic.Position.Y = d.Y;
 
+            return new Frame(graphic);
         }).ToList();
     }
 }

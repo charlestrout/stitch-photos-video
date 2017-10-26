@@ -9,13 +9,15 @@ namespace Utility.Animation.Tweens
     public interface ITween
     {
         List<Frame> Results { get; }
+        Graphic Graphic { get; }
     }
 
     public class StaticTween : ITween
     {
-        private readonly decimal Duration;
-        private readonly Graphic Graphic;
-        public StaticTween(Graphic graphic, decimal duration)
+        private readonly int Duration;
+        public Graphic Graphic { get; private set; }
+
+        public StaticTween(Graphic graphic, int duration)
         {
             Duration = duration;
             Graphic = graphic;

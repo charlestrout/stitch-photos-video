@@ -12,7 +12,7 @@ namespace Utility.Animation
         public static void SaveVideo(this Video video, string filename)
         {
             VideoFileWriter writer = new VideoFileWriter();
-            writer.Open(filename, video.Width, video.Height, 30, VideoCodec.H263P, 4000000);
+            writer.Open(filename, video.Width, video.Height, 30, VideoCodec.H263P);
             video.RenderedFrames.ForEach(writer.WriteVideoFrame);
             writer.Close();
         }

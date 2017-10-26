@@ -24,7 +24,30 @@ namespace Utility.Animation
         {
             get
             {
-                return _timeline.Tweens.SelectMany(tween => tween.Results.Select(f => f.Render(Width, Height))).ToList();
+                var pos = new Dictionary<int, Position>();
+
+
+                var x = _timeline.Tweens.SelectMany(tween =>
+                {
+                    var hash = tween.Graphic.GetHashCode();
+
+                    if (pos.ContainsKey(hash))
+                    {
+                        var p = pos[tween.Graphic.GetHashCode()];
+
+                        tween.Graphic.Position = p;
+                    }
+
+                    var tweenResults = tween.Results;
+                    pos[hash] = tweenResults.LastOrDefault().Graphics.FirstOrDefault().Position;
+
+                    return tweenResults.Select(f => f.Render(Width, Height)).ToList();
+
+                });
+
+                return x.ToList();
+
+                //return _timeline.Tweens.SelectMany(tween => tween.Results.Select(f => f.Render(Width, Height))).ToList();
             }
         }
         
