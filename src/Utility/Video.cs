@@ -1,4 +1,6 @@
-﻿namespace Utility.Animation
+﻿using Utility.Animation;
+
+namespace Utility
 {
     public class Video
     {

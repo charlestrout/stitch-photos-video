@@ -1,13 +1,14 @@
 ﻿using AForge.Video.FFMPEG;
+using Utility.Animation;
 
-namespace Utility.Animation
+namespace Utility
 {
     public static class IO
     {
-        public static void SaveVideo(this Video video, string filename)
+        public static void SaveVideo(this Video video, string filename, int bitrate, VideoCodec codec, int fps)
         {
             VideoFileWriter writer = new VideoFileWriter();
-            writer.Open(filename, video.Width, video.Height, 30, VideoCodec.H263P, 1280000);
+            writer.Open(filename, video.Width, video.Height, fps, codec, bitrate);
             video.Render().ForEach(writer.WriteVideoFrame);
             writer.Close();
         }
