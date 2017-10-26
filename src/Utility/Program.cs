@@ -14,9 +14,9 @@ namespace Utility
         static void AddFile(Timeline tl, string filename)
         {
             var g1 = Graphic.FromImage(Image.FromFile(filename));
-            g1.Style.Scale(1.2f);
+            g1.Style.Scale(1.2f).AlphaTo(0);
 
-            var style1 = GraphicStyle.Copy(g1).MoveTo(-100);
+            var style1 = GraphicStyle.Copy(g1).MoveTo(-100).AlphaTo(1);
             tl.Add(new StyleTween(g1, 5, style1, Timing.Linear));
 
             var style2 = GraphicStyle.Copy(g1).MoveTo(-110).AlphaTo(0);
@@ -65,10 +65,7 @@ namespace Utility
                 return;
             }
 
-            if (input.Count == 0 || string.IsNullOrEmpty(output))
-            {
-                show_help = true;
-            }
+            show_help = show_help || input.Count == 0 || string.IsNullOrEmpty(output);
 
             if (show_help)
             {
