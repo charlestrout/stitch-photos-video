@@ -35,5 +35,25 @@ namespace Utility.Animation
             }
             return result;
         }
+
+        public static List<Bitmap> Render(this Video video)
+        {
+            var results = video.Timeline.Tweens.SelectMany(tween =>
+            {
+                var frames = tween.Results.ToArray();
+
+                return tween.Styles.Select((style, index) =>
+               {
+                   return new
+                   {
+                       Style = style,
+                       Frame = frames[index]
+                   };
+               });
+            });
+
+            return results.Select(r => r.Frame.Render(video.Width, video.Height)).ToList();
+
+        }
     }
 }

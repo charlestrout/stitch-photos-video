@@ -9,13 +9,18 @@ namespace Utility.Animation
         public int Width { get; set; }
         public int Height { get; set; }
         public double Alpha { get; set; }
-        public double Scale { get; set; }
 
         public Rectangle AsRectangle => new Rectangle(X, Y, Width, Height);
 
         public static GraphicStyle Default(int width, int height)
         {
-            return new GraphicStyle { X = 0, Y = 0, Alpha = 1, Height = height, Scale = 1, Width = width };
+            return new GraphicStyle { X = 0, Y = 0, Alpha = 1, Height = height, Width = width };
+        }
+
+        public void Scale(float value)
+        {
+            Width = (int)(Width * value);
+            Height = (int)(Height * value);
         }
 
         public GraphicStyle Clone()

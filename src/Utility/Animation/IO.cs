@@ -13,13 +13,13 @@ namespace Utility.Animation
         {
             VideoFileWriter writer = new VideoFileWriter();
             writer.Open(filename, video.Width, video.Height, 30, VideoCodec.H263P);
-            video.RenderedFrames.ForEach(writer.WriteVideoFrame);
+            video.Render().ForEach(writer.WriteVideoFrame);
             writer.Close();
         }
 
         public static void SaveFrames(this Video video, string pattern)
         {
-            var frames = video.RenderedFrames;
+            var frames = video.Render();
             for (var index = 0; index < frames.Count; index++)
                 frames[index].Save(string.Format(pattern, index));
         }

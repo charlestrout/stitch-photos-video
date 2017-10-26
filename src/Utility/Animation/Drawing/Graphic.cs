@@ -22,10 +22,10 @@ namespace Utility.Animation
             };
         }
 
-        public Graphic Clone()
+        public Graphic Copy(GraphicStyle style = null)
         {
             var result = FromImage(Image);
-            result.Style = result.Style.Clone();
+            result.Style = style != null ? style : result.Style.Clone();
             return result;
         }
     }
