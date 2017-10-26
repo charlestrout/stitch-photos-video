@@ -8,25 +8,28 @@ namespace Utility.Animation
     /// </summary>
     public class Graphic
     {
-        public int Layer { get; set; }
         public Image Image { get; set; }
         public GraphicStyle Style { get; set; }
 
-        public static Graphic FromImage(Image image, int layer = 0)
+        public static Graphic FromImage(Image image, GraphicStyle style)
         {
-            return new Graphic
-            {
-                Layer = layer,
-                Image = image,
-                Style = GraphicStyle.Default(image.Width, image.Height)
-            };
+            return new Graphic { Image = image, Style = style };
         }
 
-        public Graphic Copy(GraphicStyle style = null)
+        public static Graphic FromImage(Image image)
         {
-            var result = FromImage(Image);
-            result.Style = style != null ? style : result.Style.Clone();
-            return result;
+            return FromImage(image, GraphicStyle.Default(image.Width, image.Height));
         }
+
+        public static Graphic FromGraphic(Graphic graphic)
+        {
+            return FromImage(graphic.Image, graphic.Style);
+        }
+
+        public static Graphic FromGraphic(Graphic graphic, GraphicStyle style)
+        {
+            return FromImage(graphic.Image, style);
+        }
+
     }
 }

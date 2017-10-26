@@ -20,7 +20,7 @@ namespace Utility.Animation.Tweens
         public StyleTween(Graphic graphic, int duration, GraphicStyle to, Func<float, float> ease)
         {
             Styles = Tween(graphic, to, duration, ease);
-            Results = Styles.Select(style => new Frame(graphic.Copy(style)));
+            Results = Styles.Select(style => new Frame(Graphic.FromGraphic(graphic, style)));
         }
 
         private IEnumerable<GraphicStyle> Tween(Graphic graphic, GraphicStyle to, int duration, Func<float, float> ease)

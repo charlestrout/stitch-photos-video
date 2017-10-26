@@ -41,6 +41,7 @@ namespace Utility.Animation
             var results = video.Timeline.Tweens.SelectMany(tween =>
             {
                 var frames = tween.Results.ToArray();
+                
 
                 return tween.Styles.Select((style, index) =>
                {
