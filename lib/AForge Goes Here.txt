@@ -1,0 +1,13 @@
+Download from http://www.aforgenet.com/framework/downloads.html
+
+Aforge.dll
+Aforge.Video.Dll
+AForge.Video.FFMPEG.dll
+avcodec-53.dll
+avdevice-53.dll
+avfilter-2.dill
+avformat-53.dll
+avutil-51.dll
+postproc-52.dll
+swresample-0.dll
+swscale-2.dll
