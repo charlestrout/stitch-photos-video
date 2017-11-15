@@ -8,7 +8,7 @@ Clone this repository, download AForget.NET and build using Visual Studio 2017.
 
 #### Visual Studio 2017
 #### AForge.NETFFmpeg
-This project requires AForge.Video.FFMPEG.dll v2.2.5 and FFmpeg. Download from http://www.aforgenet.com/framework/downloads.html and copy AForge.Video.FFMPEG.dll and ffmpeg binaries to lib/
+This project requires AForge.Video.FFMPEG.dll v2.2.5 and FFmpeg. 
 
 ## Build
 Open the solution file and build using Visual Studio
